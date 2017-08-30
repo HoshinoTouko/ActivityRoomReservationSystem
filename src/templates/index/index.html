@@ -1,0 +1,198 @@
+{% extends "base.html" %} {% block contents %}
+<section id="header" class="scrollspy">
+    <div class="header">
+        <div class="header-title">
+            <div class="container">
+                <div class="row hide-on-med-and-down">
+                    <div class="col s12 header-text">
+                        <h5>弘毅学堂</h5>
+                        <h4>活动室预定系统</h4>
+                        <br>
+                    </div>
+                    <div class="col s3 offset-s3">
+                        <a href="#form" class="waves-effect waves-light btn-large blue">
+                                座位预约
+                                <i class="material-icons" style="font-size:large;">edit</i>
+                            </a>
+                    </div>
+                    <div class="col s3">
+                        <a href="#inquire" class="waves-effect waves-light btn-large red">
+                                预定查询
+                                <i class="material-icons" style="font-size:large;">event_note</i>
+                            </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="form" class="scrollspy">
+    <div class="container">
+        <div class="row">
+            <form class="col s12" id="reservation_form">
+                <!-- Form title -->
+                <div class="col s12">
+                    <h4>座位预约</h4>
+                    <div class="progress">
+                        <div class="determinate blue" style="width: 30%"></div>
+                    </div>
+                </div>
+
+                <!-- Form body -->
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="name" type="text" class="validate" required="required">
+                    <label for="name" data-error="wrong" data-success="right">名字</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">phone</i>
+                    <input id="telephone" type="tel" class="validate" required="required">
+                    <label for="telephone" data-error="wrong" data-success="right">电话</label>
+                </div>
+
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">timer</i>
+                    <input id="starttime" class="timepicker" placeholder="开始时间" required="required">
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">timer_off</i>
+                    <input id="endtime" class="timepicker" placeholder="结束时间" required="required">
+                </div>
+
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">event_note</i>
+                    <input id="reservdate" class="datepicker" placeholder="预定日期" required="required">
+                </div>
+
+                <div class="input-field col s12 m6">
+                    <select id="room" required="required">
+                            <optgroup label="一层">
+                                <option value="1">101</option>
+                                <option value="2">102</option>
+                            </optgroup>
+                            <optgroup label="二层">
+                                <option value="3">201</option>
+                                <option value="4">202</option>
+                            </optgroup>
+                        </select>
+                    <label>
+                        指定房间
+                    </label>
+                </div>
+
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">event_available</i>
+                    <textarea id="forwhat" type="text" class="validate" class="materialize-textarea" required="required"></textarea>
+                    <label for="forwhat" data-error="wrong" data-success="right">用途</label>
+                </div>
+
+                <div class="col s12 m2 offset-m10">
+                    <p id="submit" class="waves-effect waves-light btn pink">
+                        提交
+                        <i class="material-icons" style="font-size:large;">check</i>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section id="inquire" class="scrollspy">
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h4>预约查询</h4>
+                <div class="progress">
+                    <div class="determinate blue" style="width: 30%"></div>
+                </div>
+            </div>
+            <div class="col s12">
+                <ul class="collapsible" data-collapsible="accordion">
+                    <li>
+                        <div class="collapsible-header active"><i class="material-icons">filter_drama</i>近两周的预约</div>
+                        <div class="collapsible-body">
+                            <table class="responsive-table">
+                                <thead>
+                                    <tr>
+                                        <th>预约时间</th>
+                                        <th>预约人</th>
+                                        <th>房间号</th>
+                                        <th>是否通过</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>2017-08-29 上午</td>
+                                        <td>Eclair</td>
+                                        <td>101</td>
+                                        <td>确认中</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2017-08-30 下午</td>
+                                        <td>Jellybean</td>
+                                        <td>101</td>
+                                        <td>已通过</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2017-09-02 晚上</td>
+                                        <td>Lollipop</td>
+                                        <td>101</td>
+                                        <td>未通过</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">place</i>过去的预约</div>
+                        <div class="collapsible-body">
+                            <table class="responsive-table">
+                                <thead>
+                                    <tr>
+                                        <th>预约时间</th>
+                                        <th>预约人</th>
+                                        <th>房间号</th>
+                                        <th>是否通过</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>2017-08-29 上午</td>
+                                        <td>Eclair</td>
+                                        <td>101</td>
+                                        <td>确认中</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2017-08-30 下午</td>
+                                        <td>Jellybean</td>
+                                        <td>已通过</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2017-09-02 晚上</td>
+                                        <td>Lollipop</td>
+                                        <td>101</td>
+                                        <td>未通过</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <ul class="pagination">
+                                <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                                <li class="active"><a href="#!">1</a></li>
+                                <li class="waves-effect"><a href="#!">2</a></li>
+                                <li class="waves-effect"><a href="#!">3</a></li>
+                                <li class="waves-effect"><a href="#!">4</a></li>
+                                <li class="waves-effect"><a href="#!">5</a></li>
+                                <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock contents %}
