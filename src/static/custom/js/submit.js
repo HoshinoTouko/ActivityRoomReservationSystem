@@ -19,35 +19,39 @@ $(function () {
                 room: room,
                 forwhat: forwhat
             };
-            console.log(data)
+            console.log(data);
             // Post JSON
+            // Frontend check data
             var checked = await is_valid()
-                .then(function(checked){
-                    if(checked){
+                .then(function (checked) {
+                    if (checked) {
+                        // If checked
                         console.log(checked);
+                        // Post data
                         $.post(
                             'api/add_reservation', data,
-                            function (json) {
-                                var result = JSON.parse(json);
-                                alert(json);
+                            function (result) {
+                                let json = JSON.parse(result);
+                                Materialize.toast(json.tip, 4000);
+                                console.log(json);
+                                if (json.status == 1) {
+                                    $('#reservation_form')[0].reset();
+                                }
                             }
                         );
                     }
-                }).catch(function(err){
+                }).catch(function (err) {
                     console.error(err);
                 });
-            
-                
-            
         }
     )
 });
 
 
-async function is_valid(){
+async function is_valid() {
     let result = true;
     $("#reservation_form").find("input,textarea").each(await function () {
-        if(result){
+        if (result) {
             if ($(this).val() == '') {
                 Materialize.toast('未填写完整！', 4000);
                 $(this).focus();
