@@ -4,6 +4,8 @@ $(function () {
             // Values init
             var name = $("#name").val();
             var telephone = $("#telephone").val();
+            var stuid = $("#stuid").val();
+            var password = $("#password").val();
             var starttime = $("#starttime").val();
             var endtime = $("#endtime").val();
             var reservdate = $("#reservdate").val();
@@ -13,6 +15,8 @@ $(function () {
             var data = {
                 name: name,
                 telephone: telephone,
+                stuid: stuid,
+                password: password,
                 starttime: starttime,
                 endtime: endtime,
                 reservdate: reservdate,
@@ -36,6 +40,7 @@ $(function () {
                                 console.log(json);
                                 if (json.status == 1) {
                                     $('#reservation_form')[0].reset();
+                                    $(document.body).animate({scrollTop: $('#inquire').offset().top}, 1000);
                                 }
                             }
                         );

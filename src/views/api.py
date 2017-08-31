@@ -1,6 +1,6 @@
 '''Index view module'''
 
-from ..model import common, userModel
+from ..model import Common, User
 from flask import Blueprint, session, request
 
 API = Blueprint('api', __name__)
@@ -15,12 +15,13 @@ def add_reservation():
     }
     data = request.form.to_dict()
     if request.method == 'POST':
+        # New a User
+        user = User.User(data)
         # Log data
-        print('API view get POST data: ' + str(data))
-        # Change date format
-        data['reservdate'] = common.TimeParser.parse_date(data['reservdate'])
+        print('API view get POST data:')
+        user.show()
         # Reserve
-        status, tip = userModel.Reservation.reserve(data)
+        status, tip = user.check()
         # Set json
         return_data['status'] = 1 if status else -1
         return_data['tip'] = tip
