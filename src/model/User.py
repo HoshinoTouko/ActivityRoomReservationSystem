@@ -27,6 +27,8 @@ class User:
 
     def submit():
         '''Submit user '''
+        
+        pass
 
     def check(self):
         '''Check if the user is valid'''
