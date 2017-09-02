@@ -1,15 +1,15 @@
 '''A test model'''
-from src.model.Common import TimeParser
+from src.model.Common import Common
 from src.model.User import User
 
 
 def test_timeparser():
     '''Timeparser test function'''
     print('test_timeparser')
-    print(TimeParser.parse_date('30 August, 2017'))
+    print(Common.parse_date('30 August, 2017'))
 
 
-def test_reservation():
+def test_user():
     '''Reservation test func'''
     data_true = {
         'name': '正确的信息', 'telephone': '13612345678',
@@ -37,11 +37,20 @@ def test_reservation():
 def test_db():
     from src.model.db import DB
     db = DB('src/data/database.db')
-    print(db.get_column_names('Reservation'))
-    print(db.select('Reservation'))
-    print(db.count('Reservation', {'stuid': '2016300012345'}))
+    print('TEST: get_column_names\n' + str(db.get_column_names('Reservation')))
+    print('TEST: select\n' + str(db.select('Reservation')))
+    print('TEST: count\n' + str(db.count('Reservation', {'stuid': '2016300012345', 'status': 1})))
+    print('TEST: find_max\n' + str(db.find_max('Reservation', 'id')))
+
+def test_reservation():
+    from src.model.Reservation import Reservation
+    # print('TEST get_all_reservation\n' + str(Reservation.get_all_reservation()))
+    # print('TEST get_date_range\n' + str(Common.get_date_range(10)))
+    print('TEST get_past_reservation\n' + str(Reservation.get_past_reservation()))
+    print('TEST get_future_reservation\n' + str(Reservation.get_future_reservation()))    
 
 if __name__ == '__main__':
     test_timeparser()
-    # test_reservation()
-    test_db()
+    # test_user()
+    # test_db()
+    test_reservation()
