@@ -1,12 +1,16 @@
 '''A model for user functions'''
 from .db import DB
-from .Common import TimeParser
+from .Common import Common
+import os
 
 
 class User:
     '''This is a class for handling user data.'''
-
     def __init__(self, data):
+        # Init database
+        path = str(os.path.abspath('src/data/database.db'))
+        # print (path)
+        self.db = DB(path)
         # Init class variable
         self.info = {}
         self.is_valid = False
@@ -21,14 +25,37 @@ class User:
                 key = self.user_keys[offset]
                 self.info[key] = data[key]
         # Convert date format
-        self.info['reservdate'] = TimeParser.parse_date(self.info['reservdate'])
+        self.info['reservdate'] = Common.parse_date(self.info['reservdate'])
         # Check it
         self.is_valid, self.tip = self.check()
 
-    def submit():
+    def submit(self):
         '''Submit user '''
-        
-        pass
+        # Auth
+        if not self.auth():
+            return -1, "学号或者密码错了哦~"
+        # Check count
+        count = self.db.count(
+            'Reservation', {
+            'stuid': self.info['stuid'],
+            'status': 1
+        }) + self.db.count(
+            'Reservation', {
+            'stuid': self.info['stuid'],
+            'status': 0
+        })
+        if count:
+            return -1, "已经有预约了，请等待本次预约完成"
+        submit_data = self.info
+        del submit_data['password']
+        submit_data['status'] = 0
+        submit_data['id'] = int(self.db.find_max('Reservation', 'id')) + 1
+        self.db.insert('Reservation', [submit_data])
+        return 1, "OK"
+
+    def auth(self):
+        '''Auth if the user has access'''
+        return True
 
     def check(self):
         '''Check if the user is valid'''
@@ -36,6 +63,9 @@ class User:
         data = self.info
         # print(data)
         for key in data:
+            # Do not consider status
+            if key == 'status':
+                continue
             valid = False
             try:
                 valid = re.match(self.regularly_list[key], data[key])
