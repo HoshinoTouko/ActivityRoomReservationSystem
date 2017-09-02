@@ -12,27 +12,44 @@ class DB:
         self.conn = sqlite3.connect(self.dbpath)
         conn_cursor = self.conn.cursor()
         cursor = list(conn_cursor.execute(sql))
+        self.conn.commit()
         self.conn.close()
         return cursor
 
     def insert(self, table, data):
         '''Insert function. Data must be a list'''
+        # If typeof data is dict, convert it to list
+        if isinstance(data, dict):
+            data = [data]
+        # all data
         for item in data:
-            columns_list = []
+            # Init sql query
+            sql = 'INSERT INTO `%s` VALUES ' % (table)
             values_list = []
-            for key, value in item:
-                columns_list.append(key)
-                values_list.append(value)
-            columns = ','.join(columns_list)
-            values = ','.join(values_list)
-            sql = 'INSERT INTO %s (%s) VALUES (%s)' % (table, columns, values)
+            column_names = self.get_column_names(table)
+            print(column_names)
+            for key in column_names:
+                # If not value, set it to ""
+                try:
+                    value = item[key]
+                except BaseException:
+                    value = ""
+                if isinstance(value, int) or isinstance(value, float):
+                    new_str = '%s' % str(value)
+                else:
+                    new_str = '"%s"' % str(value)
+
+                values_list.append(new_str)
+            sql += '(' + ', '.join(values_list) + ');'
+            print(sql)
             self.run_sql(sql)
 
     def select(self, table):
         '''Select function'''
-        sql = 'SELECT * FROM  `%s` ORDER BY date, starttime, endtime DESC' % (table)
+        sql = 'SELECT * FROM  `%s` ORDER BY reservdate, starttime, endtime DESC' % (table)
         cursor = self.run_sql(sql)
         result = []
+        # Get all column names in table
         column_names = self.get_column_names(table)
         for item in cursor:
             temp_dict = {}
@@ -40,6 +57,15 @@ class DB:
                 temp_dict[column_name] = item[num]
             result.append(temp_dict)
         return result
+
+    def find_max(self, table, column):
+        '''Get max data'''
+        # Get data
+        cursor = self.select(table)
+        max_data = float(cursor[0][column])
+        for item in cursor:
+            max_data = max_data if float(item[column]) < max_data else float(item[column])
+        return max_data
 
     def get_column_names(self, table):
         '''Get all column names from table.'''
@@ -56,11 +82,13 @@ class DB:
         count = 0
         # Count
         for item in cursor:
+            is_match = True
             for key, value in data.items():
-                if item[key] == value:
+                if str(item[key]) == str(value):
                     continue
                 else:
+                    is_match = False
                     break
-            count += 1
+            count += 1 if is_match else 0
             continue
         return count
