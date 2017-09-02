@@ -1,4 +1,15 @@
-$(function () {
+if(1){
+    console.log('Test function running...');
+    $("#name").val("TestName");
+    $("#telephone").val('13012345678');
+    $("#stuid").val('2016300012345');
+    $("#password").val('123214');
+    $("#starttime").val('08:00');
+    $("#endtime").val('10:00');
+    $("#reservdate").val('30 August, 2017');
+    $("#forwhat").val('213213213');
+
+}$(function () {
     $("#submit").on("click",
         async function () {
             // Values init
