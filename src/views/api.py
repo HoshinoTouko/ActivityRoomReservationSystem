@@ -1,19 +1,21 @@
 '''Index view module'''
 
-from ..model import Common, User
+from ..model import Common, User, Reservation
 from flask import Blueprint, session, request
+Common = Common.Common
+Reservation = Reservation.Reservation
 
 API = Blueprint('api', __name__)
 
-@API.route('/get_future_reservation')
+@API.route('/get_future_reservation', methods=["GET", "POST"])
 def get_future_reservation():
     '''Get future reservation'''
-    pass
+    return Common.json_beautify(Reservation.get_future_reservation())
 
-@API.route('/get_past_reservation')
+@API.route('/get_past_reservation', methods=["GET", "POST"])
 def get_past_reservation():
     '''Get past reservation'''
-    pass
+    return Common.json_beautify(Reservation.get_past_reservation())
 
 @API.route('/add_reservation', methods=["GET", "POST"])
 def add_reservation():
@@ -43,5 +45,5 @@ def add_reservation():
         return_data['status'] = 0
         return_data['tip'] = 'No POST data.'
         print('No POST data.')
-    # Javascript cannot parse ', so you must parse "
-    return str(return_data).replace("'", '"')
+    # Javascript cannot parse ', so you must replace it to "
+    return Common.json_beautify(return_data)
