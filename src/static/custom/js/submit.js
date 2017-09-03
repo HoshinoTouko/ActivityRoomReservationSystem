@@ -9,7 +9,9 @@ if(1){
     $("#reservdate").val('30 August, 2017');
     $("#forwhat").val('213213213');
 
-}$(function () {
+}
+
+$(function () {
     $("#submit").on("click",
         async function () {
             // Values init
@@ -52,6 +54,9 @@ if(1){
                                 if (json.status == 1) {
                                     $('#reservation_form')[0].reset();
                                     $(document.body).animate({scrollTop: $('#inquire').offset().top}, 1000);
+                                    // Refresh data
+                                    refresh_future_data();
+                                    refresh_past_data()
                                 }
                             }
                         );
