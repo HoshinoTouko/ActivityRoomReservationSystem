@@ -37,3 +37,8 @@ class Common:
                 continue
             continue
         return result
+
+    @staticmethod
+    def json_beautify(original_obj):
+        '''Beauty json data to strign(replace ' to ")'''
+        return str(original_obj).replace("'", '"')
