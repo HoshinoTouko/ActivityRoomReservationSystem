@@ -9,7 +9,9 @@
                     <div class="determinate blue" style="width: 30%"></div>
                 </div>
             </div>
+
             <ul class="col s12 list-scrollFire">
+                <h4>2017-09-02</h4>
                 <li class="col s12 m6">
                     <div class="card blue darken-3">
                         <div class="card-content white-text">
@@ -82,8 +84,56 @@
                         </div>
                     </div>
                 </li>
+            </ul>
+
+            <ul class="col s12 list-scrollFire">
+                <h4>2017-09-02</h4>
                 <li class="col s12 m6">
-                    <div class="card green darken-4">
+                    <div class="card blue darken-3">
+                        <div class="card-content white-text">
+                            <span class="card-title">待审核</span>
+                            <p>学生 ABC 申请于</p>
+                            <p>2017-08-30 15:00-16:00</p>
+                            <p>在 101</p>
+                            <p>用途：写作业</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#" class="white-text">批准</a>
+                            <a href="#" class="white-text">拒绝</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="col s12 m6">
+                    <div class="card blue darken-3">
+                        <div class="card-content white-text">
+                            <span class="card-title">待审核</span>
+                            <p>学生 ABC 申请于</p>
+                            <p>2017-08-30 15:00-16:00</p>
+                            <p>在 101</p>
+                            <p>用途：写作业</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#" class="white-text">批准</a>
+                            <a href="#" class="white-text">拒绝</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="col s12 m6">
+                    <div class="card red darken-3">
+                        <div class="card-content white-text">
+                            <span class="card-title">已审核：拒绝</span>
+                            <p>学生 ABC 申请于</p>
+                            <p>2017-08-30 15:00-16:00</p>
+                            <p>在 101</p>
+                            <p>用途：写作业</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#" class="white-text">已结束</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="col s12 m6">
+                    <div class="card green darken-2">
                         <div class="card-content white-text">
                             <span class="card-title">已审核：通过</span>
                             <p>学生 ABC 申请于</p>
@@ -92,7 +142,21 @@
                             <p>用途：写作业</p>
                         </div>
                         <div class="card-action">
-                            <a href="#" class="white-text">已开始</a>
+                            <a href="#" class="white-text">未开始</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="col s12 m6">
+                    <div class="card green darken-2">
+                        <div class="card-content white-text">
+                            <span class="card-title">已审核：通过</span>
+                            <p>学生 ABC 申请于</p>
+                            <p>2017-08-30 15:00-16:00</p>
+                            <p>在 101</p>
+                            <p>用途：写作业</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#" class="white-text">未开始</a>
                         </div>
                     </div>
                 </li>
@@ -101,7 +165,6 @@
     </div>
 </section>
 
-{% endblock contents %} 
-{% block js_files %}
+{% endblock contents %} {% block js_files %}
 <script type="text/javascript" src="{{ url_for('static', filename='custom/js/admin.js') }}"></script>
 {% endblock js_files %}
