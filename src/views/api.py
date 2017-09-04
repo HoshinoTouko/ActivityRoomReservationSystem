@@ -9,12 +9,12 @@ API = Blueprint('api', __name__)
 
 @API.route('/get_future_reservation', methods=["GET", "POST"])
 def get_future_reservation():
-    '''Get future reservation'''
+    '''Get future 14days reservation'''
     return Common.json_beautify(Reservation.get_future_reservation())
 
 @API.route('/get_past_reservation', methods=["GET", "POST"])
 def get_past_reservation():
-    '''Get past reservation'''
+    '''Get past 14days reservation'''
     return Common.json_beautify(Reservation.get_past_reservation())
 
 @API.route('/add_reservation', methods=["GET", "POST"])

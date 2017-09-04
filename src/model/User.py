@@ -77,6 +77,8 @@ class User:
                 continue
             else:
                 return False, self.keyname_list[key] + '出错啦'
+        if not data['reservdate'] in Common.get_date_range(14, 1):
+            return False, '这个时间无法预约哦'
         return True, 'OK'
 
     def show(self):

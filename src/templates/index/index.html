@@ -95,7 +95,7 @@
 
                 <div class="input-field col s12">
                     <i class="material-icons prefix">event_available</i>
-                    <textarea id="forwhat" type="text" class="validate" class="materialize-textarea" required="required"></textarea>
+                    <textarea id="forwhat" type="text" class="validate materialize-textarea" required="required"></textarea>
                     <label for="forwhat" data-error="wrong" data-success="right">用途</label>
                 </div>
 
@@ -122,8 +122,12 @@
             <div class="col s12">
                 <ul class="collapsible" data-collapsible="accordion">
                     <li>
-                        <div class="collapsible-header active"><i class="material-icons">filter_drama</i>最近未通过的预约</div>
+                        <div class="collapsible-header active">
+                            <i class="material-icons">redo</i>
+                            未来的预约
+                        </div>
                         <div class="collapsible-body">
+                            <a id="refresh_future_reservation_info" class="material-icons right black-text" onclick="refresh_future_data();">refresh</a>
                             <table class="responsive-table">
                                 <thead>
                                     <tr>
@@ -145,8 +149,9 @@
                         </div>
                     </li>
                     <li>
-                        <div class="collapsible-header"><i class="material-icons">place</i>最近已通过的预约</div>
+                        <div class="collapsible-header"><i class="material-icons">repeat</i>最近过去的预约</div>
                         <div class="collapsible-body">
+                            <a id="refresh_past_reservation_info" class="material-icons right black-text" onclick="refresh_past_data();">refresh</a>
                             <table class="responsive-table">
                                 <thead>
                                     <tr>
@@ -156,8 +161,8 @@
                                         <th>状态</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr id='past_reservation_info'>
+                                <tbody id='past_reservation_info'>
+                                    <tr>
                                         <td>2017-08-29 上午</td>
                                         <td>Eclair</td>
                                         <td>101</td>

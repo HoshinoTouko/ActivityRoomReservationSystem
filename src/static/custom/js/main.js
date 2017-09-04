@@ -1,39 +1,45 @@
 //Index page function
+function resolve_info(item){
+    switch (item.status){
+        case '0':
+            status_text = '待确认';
+            break;
+        case '1':
+            status_text = '已通过';
+            break;
+        case '-1':
+        default:
+            status_text = '未通过';
+            break;
+    }
+    var final_html = formatString(
+        "<tr> <td> {time_text} </td> <td> {name_text} </td> <td> {room_text} </td> <td> {status_text} </td></tr>", {
+            time_text: item.reservdate + ' ' + item.starttime + ' - ' + item.endtime,
+            name_text: item.name + ' ' + item.stuid,
+            room_text: item.room,
+            status_text: status_text
+        }
+    );
+    return final_html;
+}
+function resolve_no_info(){
+    return '<tr><td>暂时没有预约</td><td></td><td></td><td> </td></tr>';
+}
+
 function refresh_future_data(){
     $('#future_reservation_info').empty();
     $.post(
-        'api/get_future_reservation', [],
-        function (result) {
+        '/api/get_future_reservation', [],
+        async function (result) {
             let json = JSON.parse(result);
             count = 0;
-            json.forEach(function(item) {
-                var time_text = item.reservdate + ' ' + item.starttime + ' - ' + item.endtime;
-                var name_text = item.name;
-                var room_text = item.room;
-                var status_text = '未通过';
-                switch (item.status){
-                    case '0':
-                        status_text = '待确认';
-                        break;
-                    case '1':
-                        status_text = '已通过';
-                        break;
-                    case '-1':
-                    default:
-                        status_text = '未通过';
-                        break;
-                }
-                final_html = '<tr>'
-                        + '<td>' + time_text + '</td>'
-                        + '<td>' + name_text + '</td>'
-                        + '<td>' + room_text + '</td>'
-                        + '<td>' + status_text + '</td>'
-                        + '</tr>';
+            json.forEach(await function(item) {
+                var final_html = resolve_info(item);
                 $('#future_reservation_info').append(final_html);
                 count++;
             }, this);
             if (count == 0){
-                final_html = '<tr><td>暂时没有预约</td><td></td><td></td><td> </td></tr>';
+                final_html = resolve_no_info();
                 $('#future_reservation_info').append(final_html);
             }
         }
@@ -42,43 +48,25 @@ function refresh_future_data(){
 function refresh_past_data(){
     $('#past_reservation_info').empty();
     $.post(
-        'api/get_past_reservation', [],
+        '/api/get_past_reservation', [],
         function (result) {
             let json = JSON.parse(result);
             count = 0;
             json.forEach(function(item) {
-                var time_text = item.reservdate + ' ' + item.starttime + ' - ' + item.endtime;
-                var name_text = item.name;
-                var room_text = item.room;
-                var status_text = '未通过';
-                switch (item.status){
-                    case '0':
-                        status_text = '待确认';
-                        break;
-                    case '1':
-                        status_text = '已通过';
-                        break;
-                    case '-1':
-                    default:
-                        status_text = '未通过';
-                        break;
-                }
-                final_html = '<tr>'
-                        + '<td>' + time_text + '</td>'
-                        + '<td>' + name_text + '</td>'
-                        + '<td>' + room_text + '</td>'
-                        + '<td>' + status_text + '</td>'
-                        + '</tr>';
+                var final_html = resolve_info(item);
                 $('#past_reservation_info').append(final_html);
                 count++;
             }, this);
             if (count == 0){
-                final_html = '<tr><td>暂时没有预约</td><td></td><td></td><td></td></tr>';
+                final_html = resolve_no_info();
                 $('#past_reservation_info').append(final_html);
             }
         }
     );
 }
+
+// When click fresh buttom, refresh reservation list.
+
 
 // Materializecss jQuery Plugin Initialization
 $('.button-collapse').sideNav();
@@ -92,6 +80,7 @@ $(document).ready(function () {
     $('ul.tabs').tabs();
     $('#admin-tabs-swipe').tabs({ 'swipeable': true });
 
+    // When page loaded, do the functions below.
     refresh_future_data();
     refresh_past_data();    
 });
