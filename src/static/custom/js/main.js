@@ -30,10 +30,10 @@ function refresh_future_data(){
     $('#future_reservation_info').empty();
     $.post(
         '/api/get_future_reservation', [],
-        async function (result) {
+        function (result) {
             let json = JSON.parse(result);
             count = 0;
-            json.forEach(await function(item) {
+            json.forEach(function(item) {
                 var final_html = resolve_info(item);
                 $('#future_reservation_info').append(final_html);
                 count++;

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="static/materializecss/css/materialize.min.css" media="screen,projection" />
+
+    <!--Import my custom css-->
+    <link type="text/css" rel="stylesheet" href="static/custom/css/main.css" />
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper pink">
+            <a href="#" class="brand-logo">&nbsp&nbsp 活动室预约</a>
+            <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="">Home</a></li>
+                <li><a href="admin/">Admin</a></li>
+                <li><a href="user/">Inquire</a></li>
+                <li><a href="about/">About</a></li>
+            </ul>
+            <ul class="side-nav" id="mobile-menu">
+                <li><a href="">Home</a></li>
+                <li><a href="admin/">Admin</a></li>
+                <li><a href="user/">Inquire</a></li>
+                <li><a href="about/">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m6 offset-m3">
+                <h4>登陆</h4>
+                <div class="progress">
+                    <div class="determinate blue" style="width: 20%"></div>
+                </div>
+                <form class="row" method="post" action="/admin">
+                    <div class="input-field col s12">
+                        <input name="username" id="username" type="text" class="validate">
+                        <label for="username">Name</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input name="password" id="password" type="password" class="validate">
+                        <label for="password">Password</label>
+                    </div>
+                    <input class="waves-effect waves-light btn" type="submit" value="login">确认<i class="material-icons right">send</i></>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="static/jquery/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="static/materializecss/js/materialize.min.js"></script>
+    <script type="text/javascript" src="static/custom/js/main.js"></script>
+    <script type="text/javascript" src="static/custom/js/submit.js"></script>
+    <script type="text/javascript" src="static/custom/js/admin.js"></script>
+</body>
+
+</html>
