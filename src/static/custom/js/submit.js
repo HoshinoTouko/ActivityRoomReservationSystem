@@ -46,7 +46,7 @@ $(function () {
                         console.log(checked);
                         // Post data
                         $.post(
-                            'api/add_reservation', data,
+                            '/api/add_reservation', data,
                             function (result) {
                                 let json = JSON.parse(result);
                                 Materialize.toast(json.tip, 4000);
