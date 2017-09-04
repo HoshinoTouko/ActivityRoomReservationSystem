@@ -79,10 +79,7 @@ $(document).ready(function () {
 
     $('ul.tabs').tabs();
     $('#admin-tabs-swipe').tabs({ 'swipeable': true });
-
-    // When page loaded, do the functions below.
-    refresh_future_data();
-    refresh_past_data();    
+    
 });
 
 // Materializecss scrolFire

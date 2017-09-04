@@ -76,10 +76,10 @@
     <script type="text/javascript" src="{{ url_for('static', filename='materializecss/js/materialize.min.js') }}"></script>
     <!-- Custom js files -->
     <script type="text/javascript" src="{{ url_for('static', filename='custom/js/main.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='custom/js/submit.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='custom/js/admin.js') }}"></script>
     <!-- string-format.js -->
     <script type="text/javascript" src="{{ url_for('static', filename='custom/js/string-format.js') }}"></script>
+    
+    {% block js_files %}{% endblock js_files %}
 </body>
 
 </html>
