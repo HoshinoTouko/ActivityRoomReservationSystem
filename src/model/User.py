@@ -10,7 +10,7 @@ class User:
         # Init database
         path = str(os.path.abspath('src/data/database.db'))
         # print (path)
-        self.db = DB(path)
+        self.database = DB(path)
         # Init class variable
         self.info = {}
         self.is_valid = False
@@ -35,11 +35,11 @@ class User:
         if not self.auth():
             return -1, "学号或者密码错了哦~"
         # Check count
-        count = self.db.count(
+        count = self.database.count(
             'Reservation', {
             'stuid': self.info['stuid'],
             'status': 1
-        }) + self.db.count(
+        }) + self.database.count(
             'Reservation', {
             'stuid': self.info['stuid'],
             'status': 0
@@ -49,8 +49,8 @@ class User:
         submit_data = self.info
         del submit_data['password']
         submit_data['status'] = 0
-        submit_data['id'] = int(self.db.find_max('Reservation', 'id')) + 1
-        self.db.insert('Reservation', [submit_data])
+        submit_data['id'] = int(self.database.find_max('Reservation', 'id')) + 1
+        self.database.insert('Reservation', [submit_data])
         return 1, "OK"
 
     def auth(self):
