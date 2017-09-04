@@ -12,7 +12,7 @@ if(1){
 }
 
 $(function () {
-    $("#submit").on("click",
+    $("#submit_reservation").on("click",
         async function () {
             // Values init
             var name = $("#name").val();
