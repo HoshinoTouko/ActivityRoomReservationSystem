@@ -16,6 +16,35 @@ class DB:
         self.conn.close()
         return cursor
 
+    def update(self, table, data, target):
+        '''Update function. data and target must be a dict.'''
+        data_text = ''
+        data_list = []
+        target_text = ''
+        target_list = []
+        # Generate data text
+        for key, value in data.items():
+            temp = key + '='
+            if isinstance(value, int) or isinstance(value, float):
+                temp += '%s' % str(value)
+            else:
+                temp += '"%s"' % str(value)
+            data_list.append(temp)
+        data_text = ','.join(data_list)
+        # Generate target text
+        for key, value in target.items():
+            temp = key + '='
+            if isinstance(value, int) or isinstance(value, float):
+                temp += '%s' % str(value)
+            else:
+                temp += '"%s"' % str(value)
+            target_list.append(temp)
+        target_text = ','.join(target_list)
+        # Gen SQL
+        sql = 'UPDATE `%s` SET %s WHERE %s' % (table, data_text, target_text)
+        return sql
+        return self.run_sql(sql)
+
     def insert(self, table, data):
         '''Insert function. Data must be a list'''
         # If typeof data is dict, convert it to list
