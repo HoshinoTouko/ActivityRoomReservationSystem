@@ -42,7 +42,6 @@ class DB:
         target_text = ','.join(target_list)
         # Gen SQL
         sql = 'UPDATE `%s` SET %s WHERE %s' % (table, data_text, target_text)
-        return sql
         return self.run_sql(sql)
 
     def insert(self, table, data):
@@ -75,7 +74,7 @@ class DB:
 
     def select(self, table):
         '''Select function'''
-        sql = 'SELECT * FROM  `%s` ORDER BY reservdate, starttime, endtime DESC' % (table)
+        sql = 'SELECT * FROM  `%s` ORDER BY reservdate DESC, id, starttime DESC, endtime DESC' % (table)
         cursor = self.run_sql(sql)
         result = []
         # Get all column names in table
