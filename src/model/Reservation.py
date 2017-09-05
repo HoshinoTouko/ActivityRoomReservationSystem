@@ -7,7 +7,19 @@ from .Common import Common
 
 
 class Reservation:
-    '''A class about reservation handle.'''
+    '''A class about reservation handler.'''
+    @staticmethod
+    def change_status(reserv_id, status):
+        '''Change the id of the reservation by id'''
+        database = Reservation.get_db()
+        return database.update(
+            'Reservation', {
+                'status': status
+            }, {
+                'id': reserv_id
+            }
+        )
+
     @staticmethod
     def get_future_reservation():
         '''Return a list about future 14 days reservation.'''
@@ -36,11 +48,24 @@ class Reservation:
             del item['telephone']
         return result
 
+    # Admin func
+
+    @staticmethod
+    def admin_get_future_reservation():
+        '''Return a list about past 14 days reservation.'''
+        return Common.list_filter(
+            Reservation.get_all_reservation(),
+            'reservdate',
+            Common.get_date_range(14)
+        )
+
     @staticmethod
     def get_all_reservation():
         '''Get a list about all reservation.'''
         database = Reservation.get_db()
         return database.select('Reservation')
+
+    # DB func
 
     @staticmethod
     def get_db():

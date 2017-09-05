@@ -25,6 +25,69 @@ def is_login():
             return True
     return False
 
+# -------------------------------------------------------------------------------------
+# Route
+# -------------------------------------------------------------------------------------
+@ADMIN.route('/api/pass_reservation', methods=["GET", "POST"])
+@login_required
+def pass_reservation():
+    '''Pass the reservation'''
+    if request.method == 'POST':
+        try:
+            Reservation.change_status(request.form['id'], 1)
+        except BaseException:
+            return '0'
+    return '1'
+
+@ADMIN.route('/api/refuse_reservation', methods=["GET", "POST"])
+@login_required
+def refuse_reservation():
+    '''Refuse the reservation'''
+    if request.method == 'POST':
+        try:
+            Reservation.change_status(request.form['id'], 0)
+        except BaseException:
+            return '0'
+    return '1'
+
+@ADMIN.route('/manage_future', methods=["GET", "POST"])
+@login_required
+def manage_future():
+    '''Manage future reservation.'''
+    data = Reservation.admin_get_future_reservation()
+    result = {}
+    result_reverse = {}
+    for item in data:
+        try:
+            result[item['reservdate']].append(item)
+        except BaseException:
+            result[item['reservdate']] = [item]
+    for key in list(result.keys())[::-1]:
+        result_reverse[key] = result[key]
+    return render_template('admin/manage_future.html', all_data=result_reverse)
+
+@ADMIN.route('/api/manage_future', methods=["GET", "POST"])
+@login_required
+def api_manage_future():
+    '''Manage future reservation.'''
+    data = Reservation.admin_get_future_reservation()
+    result = {}
+    result_reverse = {}
+    for item in data:
+        try:
+            result[item['reservdate']].append(item)
+        except BaseException:
+            result[item['reservdate']] = [item]
+    for key in list(result.keys())[::-1]:
+        result_reverse[key] = result[key]
+    return Common.json_beautify(result_reverse)
+
+@ADMIN.route('/api/get_all', methods=["GET", "POST"])
+@login_required
+def get_all():
+    '''Refuse the reservation'''
+    return Common.json_beautify(Reservation.get_all_reservation())
+
 @ADMIN.route('/')
 @login_required
 def index():

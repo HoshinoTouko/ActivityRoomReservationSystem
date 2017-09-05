@@ -1,6 +1,7 @@
 '''A test model'''
 from src.model.Common import Common
 from src.model.User import User
+from src.model.db import DB
 
 
 def test_timeparser():
@@ -47,10 +48,16 @@ def test_reservation():
     # print('TEST get_all_reservation\n' + str(Reservation.get_all_reservation()))
     # print('TEST get_date_range\n' + str(Common.get_date_range(10)))
     print('TEST get_past_reservation\n' + str(Reservation.get_past_reservation()))
-    print('TEST get_future_reservation\n' + str(Reservation.get_future_reservation()))    
+    print('TEST get_future_reservation\n' + str(Reservation.get_future_reservation()))
+
+def test_update():
+    database = DB('123')
+    print('TEST db_update\n' + str(database.update('test', {'id': 1}, {'name': '123'})))
 
 if __name__ == '__main__':
     test_timeparser()
     # test_user()
     # test_db()
-    test_reservation()
+    # test_reservation()
+    # test_update()
+    pass
