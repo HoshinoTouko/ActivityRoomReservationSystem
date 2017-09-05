@@ -39,13 +39,24 @@ def pass_reservation():
             return '0'
     return '1'
 
+@ADMIN.route('/api/pend_reservation', methods=["GET", "POST"])
+@login_required
+def pend_reservation():
+    '''Let the reservation be pended'''
+    if request.method == 'POST':
+        try:
+            Reservation.change_status(request.form['id'], 0)
+        except BaseException:
+            return '0'
+    return '1'
+
 @ADMIN.route('/api/refuse_reservation', methods=["GET", "POST"])
 @login_required
 def refuse_reservation():
     '''Refuse the reservation'''
     if request.method == 'POST':
         try:
-            Reservation.change_status(request.form['id'], 0)
+            Reservation.change_status(request.form['id'], -1)
         except BaseException:
             return '0'
     return '1'
@@ -64,7 +75,7 @@ def manage_future():
             result[item['reservdate']] = [item]
     for key in list(result.keys())[::-1]:
         result_reverse[key] = result[key]
-    return render_template('admin/manage_future.html', all_data=result_reverse)
+    return render_template('admin/manage_future.html', all_data=result_reverse, is_login=True)
 
 @ADMIN.route('/api/manage_future', methods=["GET", "POST"])
 @login_required

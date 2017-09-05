@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block contents %}
 
 <section id="admin">
-    <div class="container">
+    <div class="container list-scrollFire">
         <div class="row">
             <div class="col s12">
                 <h4>预约管理</h4>
@@ -11,7 +11,7 @@
             </div>
 
             {% for data_key, data_value in all_data.items() %}
-                <ul class="col s12 list-scrollFire">
+                <ul class="col s12">
                     <h4>{{ data_key }}</h4>
                     {% for data in data_value %}
                         {% if data.status == '0' %}
@@ -25,9 +25,9 @@
                             {% set title_text = '已审核：拒绝' %}
                         {% endif %}
                         <li class="col s12 m6">
-                            <div class="card {{class_colour}} darken-3">
+                            <div class="card {{class_colour}} darken-4" id="reservation-{{ data.id }}">
                                 <div class="card-content white-text">
-                                    <span class="card-title">{{ title_text }}</span>
+                                    <span class="card-title" id="reservation_title-{{ data.id }}">{{ title_text }}</span>
                                     <p>学生 {{ data.name }} - {{ data.stuid }} 申请于</p>
                                     <p>{{ data.reservdate }} {{data.starttime}}-{{data.endtime}}</p>
                                     <p>在 {{ data.room }}</p>
@@ -35,8 +35,9 @@
                                     <p>联系方式： {{ data.telephone }}</p>
                                 </div>
                                 <div class="card-action">
-                                    <a href="#" class="white-text">批准</a>
-                                    <a href="#" class="white-text">拒绝</a>
+                                    <a href="#no_section" class="white-text" onclick="pass_reservation({{ data.id }})">批准</a>
+                                    <a href="#no_section" class="white-text" onclick="pend_reservation({{ data.id }})">待定</a>
+                                    <a href="#no_section" class="white-text" onclick="refuse_reservation({{ data.id }})">拒绝</a>
                                 </div>
                             </div>
                         </li>
