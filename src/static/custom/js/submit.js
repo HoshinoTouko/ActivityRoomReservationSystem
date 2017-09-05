@@ -1,3 +1,4 @@
+/*
 if(1){
     console.log('Test function running...');
     $("#name").val("TestName");
@@ -10,6 +11,7 @@ if(1){
     $("#forwhat").val('213213213');
 
 }
+*/
 
 $(function () {
     $("#submit_reservation").on("click",
