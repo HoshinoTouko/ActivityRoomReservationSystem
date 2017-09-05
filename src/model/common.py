@@ -1,8 +1,26 @@
 '''Some common functions'''
+import os
+import hashlib
 
 
 class Common:
-    '''A class for handling date'''
+    '''A class for handling common things'''
+    @staticmethod
+    def is_valid(username, password):
+        '''Auth user'''
+        # Gen a password list
+        pass_file = open(str(os.path.abspath('src/data/pass.pass')))
+        pass_dict = {}
+        for line in pass_file.readlines():
+            pass_dict[line.split()[0]] = line.split()[1]
+            continue
+        try:
+            if pass_dict[username] == hashlib.sha3_512(password.encode()).hexdigest():
+                return True
+        except BaseException:
+            return False
+        return False
+
     @staticmethod
     def parse_date(date_text):
         '''Parse date text, like 30 August, 2017'''

@@ -93,11 +93,11 @@ def api_manage_future():
         result_reverse[key] = result[key]
     return Common.json_beautify(result_reverse)
 
-@ADMIN.route('/api/get_all', methods=["GET", "POST"])
+@ADMIN.route('/get_all', methods=["GET", "POST"])
 @login_required
 def get_all():
-    '''Refuse the reservation'''
-    return Common.json_beautify(Reservation.get_all_reservation())
+    '''Show all reservation'''
+    return render_template('admin/get_all.html', is_login=True, all_data=Reservation.get_all_reservation())
 
 @ADMIN.route('/')
 @login_required
@@ -112,7 +112,7 @@ def login():
         return redirect(url_for('admin.index'))
 
     if request.method == 'POST':
-        if request.form['username'] == 'touko':
+        if Common.is_valid(request.form['username'], request.form['password']):
             session['username'] = request.form['username']
             session['isLogin'] = True
             return redirect(url_for('admin.index'))
