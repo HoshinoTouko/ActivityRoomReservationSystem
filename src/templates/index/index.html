@@ -100,7 +100,7 @@
                 </div>
 
                 <div class="col s12 m2 offset-m10">
-                    <p id="submit_reservation" class="waves-effect waves-light btn pink">
+                    <p id="submit_reservation" class="waves-effect waves-light btn pink tooltipped" data-position="bottom" data-delay="50" data-tooltip="再确认一下哦">
                         提交
                         <i class="material-icons" style="font-size:large;">check</i>
                     </p>
@@ -126,8 +126,8 @@
                             <i class="material-icons">redo</i>
                             未来的预约
                         </div>
-                        <div class="collapsible-body">
-                            <a id="refresh_future_reservation_info" class="material-icons right black-text" onclick="refresh_future_data();">refresh</a>
+                        <div class="collapsible-body grey lighten-4">
+                            <a href="#no_section" id="refresh_future_reservation_info" class="material-icons right black-text" onclick="refresh_future_data();">refresh</a>
                             <table class="responsive-table">
                                 <thead>
                                     <tr>
@@ -150,8 +150,8 @@
                     </li>
                     <li>
                         <div class="collapsible-header"><i class="material-icons">repeat</i>最近过去的预约</div>
-                        <div class="collapsible-body">
-                            <a id="refresh_past_reservation_info" class="material-icons right black-text" onclick="refresh_past_data();">refresh</a>
+                        <div class="collapsible-body grey lighten-4">
+                            <a href="#no_section" id="refresh_past_reservation_info" class="material-icons right black-text" onclick="refresh_past_data();">refresh</a>
                             <table class="responsive-table">
                                 <thead>
                                     <tr>

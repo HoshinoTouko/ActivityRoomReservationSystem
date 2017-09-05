@@ -3,17 +3,21 @@ function resolve_info(item){
     switch (item.status){
         case '0':
             status_text = '待确认';
+            class_text = 'blue lighten-5';
             break;
         case '1':
             status_text = '已通过';
+            class_text = 'green lighten-5';
             break;
         case '-1':
         default:
             status_text = '未通过';
+            class_text = 'red lighten-5';
             break;
     }
     var final_html = formatString(
-        "<tr> <td> {time_text} </td> <td> {name_text} </td> <td> {room_text} </td> <td> {status_text} </td></tr>", {
+        '<tr {class_text}> <td> {time_text} </td> <td> {name_text} </td> <td> {room_text} </td> <td> {status_text} </td></tr>', {
+            class_text: 'class="' + class_text + '"',
             time_text: item.reservdate + ' ' + item.starttime + ' - ' + item.endtime,
             name_text: item.name + ' ' + item.stuid,
             room_text: item.room,
@@ -80,6 +84,7 @@ $(document).ready(function () {
     $('ul.tabs').tabs();
     $('#admin-tabs-swipe').tabs({ 'swipeable': true });
     
+    $('.modal').modal();    
 });
 
 // Materializecss scrolFire
