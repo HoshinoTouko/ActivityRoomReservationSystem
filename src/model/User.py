@@ -55,7 +55,8 @@ class User:
 
     def auth(self):
         '''Auth if the user has access'''
-        return True
+        return self.info.get("password") == "2147483648"
+        # return True
 
     def check(self):
         '''Check if the user is valid'''
