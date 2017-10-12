@@ -53,7 +53,6 @@ class Common:
                 continue
             except BaseException:
                 continue
-            continue
         return result
 
     @staticmethod
