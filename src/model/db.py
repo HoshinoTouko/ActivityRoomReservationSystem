@@ -74,7 +74,10 @@ class DB:
 
     def select(self, table):
         '''Select function'''
-        sql = 'SELECT * FROM  `%s` ORDER BY reservdate DESC, id, starttime DESC, endtime DESC' % (table)
+        if table == 'Reservation':
+            sql = 'SELECT * FROM  `%s` ORDER BY reservdate DESC, id, starttime DESC, endtime DESC' % (table)
+        else:
+            sql = 'SELECT * FROM  `%s`' % (table)
         cursor = self.run_sql(sql)
         result = []
         # Get all column names in table
