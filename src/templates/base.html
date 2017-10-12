@@ -5,92 +5,146 @@
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='materializecss/css/materialize.min.css') }}"
-        media="screen,projection" />
+    <link type="text/css" rel="stylesheet"
+          href="{{ url_for('static', filename='materializecss/css/materialize.min.css') }}"
+          media="screen,projection"/>
 
     <!--Import my custom css-->
-    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='custom/css/main.css') }}" />
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='custom/css/main.css') }}"/>
 
     <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 
 <body>
-    <nav>
-        <div class="nav-wrapper pink">
-            <a href="{{url_for('index.index')}}" class="brand-logo">&nbsp&nbsp 活动室预约</a>
-            <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="{{ url_for('index.index') }}">Home</a></li>
-                <li><a href="#notifications" class="modal-trigger">Tips</a></li>
-                <li><a href="http://touko.moe">About</a></li>
-                <li><a href="{{ url_for('admin.index') }}">Admin</a></li>
-                {% if is_login %}
+<nav>
+    <div class="nav-wrapper pink">
+        <a href="{{ url_for('index.index') }}" class="brand-logo">&nbsp&nbsp 活动室预约</a>
+        <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="{{ url_for('index.index') }}">Home</a></li>
+            <li><a href="#notifications" class="modal-trigger">Tips</a></li>
+            <li><a href="http://touko.moe">About</a></li>
+            <li><a href="{{ url_for('admin.index') }}">Admin</a></li>
+            {% if is_login %}
                 <li><a href="{{ url_for('admin.logout') }}">Logout</a></li>
-                {% endif %}
-            </ul>
-            <ul class="side-nav" id="mobile-menu">
-                <li><a href="{{ url_for('index.index') }}">Home</a></li>
-                <li><a href="#notifications" class="modal-trigger">Tips</a></li>
-                <li><a href="http://touko.moe">About</a></li>
-                <li><a href="{{ url_for('admin.index') }}">Admin</a></li>
-                {% if is_login %}
+            {% endif %}
+        </ul>
+        <ul class="side-nav" id="mobile-menu">
+            <li><a href="{{ url_for('index.index') }}">Home</a></li>
+            <li><a href="#notifications" class="modal-trigger">Tips</a></li>
+            <li><a href="http://touko.moe">About</a></li>
+            <li><a href="{{ url_for('admin.index') }}">Admin</a></li>
+            {% if is_login %}
                 <li><a href="{{ url_for('admin.logout') }}">Logout</a></li>
-                {% endif %}
-            </ul>
-        </div>
-    </nav>
-
-    {% block contents %} {% endblock contents %}
-
-
-
-    <section id="footer" class="scrollspy">
-        <footer class="page-footer pink">
-            <div class="container">
-                <div class="row">
-                    <div class="col l6 s12">
-                        <h5 class="white-text">弘毅学堂活动室预约系统</h5>
-                        <p class="grey-text text-lighten-4">使用请遵守各项规则。<br/>合理安排时间，保持活动室整洁。</p>
-                    </div>
-                    <div class="col l4 offset-l2 s12">
-                        <h5 class="white-text">Links</h5>
-                        <ul>
-                            <li><a href="#notifications" class="grey-text text-lighten-3 modal-trigger">注意事项</a></li>
-                            <li><a href="http://touko.moe" class="grey-text text-lighten-3" href="#!">关于</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-copyright">
-                <div class="container">
-                    © 2017 Touko @Sora
-                    <a class="grey-text text-lighten-4 right" href="http://sora.studio/">Sora Studio</a>
-                </div>
-            </div>
-        </footer>
-    </section>
-
-    <!-- Modal Structure -->
-    <div id="notifications" class="modal modal-fixed-footer">
-        <div class="modal-content">
-            <h4>弘毅活动室预约注意事项</h4>
-            <p>正文部分</p>
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-        </div>
+            {% endif %}
+        </ul>
     </div>
+</nav>
 
-    <!--Import jQuery before materialize.js-->
-    <script type="text/javascript" src="{{ url_for('static', filename='jquery/js/jquery-3.2.1.min.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='materializecss/js/materialize.min.js') }}"></script>
-    <!-- Custom js files -->
-    <script type="text/javascript" src="{{ url_for('static', filename='custom/js/main.js') }}"></script>
-    <!-- string-format.js -->
-    <script type="text/javascript" src="{{ url_for('static', filename='custom/js/string-format.js') }}"></script>
+{% block contents %} {% endblock contents %}
 
-    {% block js_files %}{% endblock js_files %}
+
+
+<section id="footer" class="scrollspy">
+    <footer class="page-footer pink">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">弘毅学堂活动室预约系统</h5>
+                    <p class="grey-text text-lighten-4">使用请遵守各项规则。<br/>合理安排时间，保持活动室整洁。</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Links</h5>
+                    <ul>
+                        <li><a href="#notifications" class="grey-text text-lighten-3 modal-trigger">注意事项</a></li>
+                        <li><a href="http://touko.moe" class="grey-text text-lighten-3" href="#!">关于</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2017 Touko @Sora
+                <a class="grey-text text-lighten-4 right" href="http://sora.studio/">Sora Studio</a>
+            </div>
+        </div>
+    </footer>
+</section>
+
+<!-- Modal Structure -->
+<div id="notifications" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <h4>弘毅活动室预约注意事项</h4>
+        <h2><a id="_0"></a>活动室使用规则</h2>
+        <ol>
+            <li>
+                <p>活动室预约总体遵循先来后到的原则（即先预约者优先使用），如学堂内有重要会议（有辅导员、院领导参与的会议等）需在活动室召开，则参会者对同时段的活动室具有优先使用权。</p>
+            </li>
+            <li>
+                <p>到达活动室的时间不得晚于预约时间15分钟。</p>
+            </li>
+            <li>
+                <p>每次使用完活动室后15分钟内须将钥匙归还至当天值班人员处。</p>
+            </li>
+            <li>
+                <p>如果需要中途离开，则须锁好门窗，自己保管好钥匙后离开，并在预约时间结束后归还钥匙。</p>
+            </li>
+            <li>
+                <p>活动室使用者须保持活动室环境干净整洁。到达活动室和离开活动室时须用手机拍照，并将照片发送至<strong>社团中心官方QQ（1451909411）</strong>。照片要具有时间信息（时间水印或墙上挂钟），如果当天有值班人员现场检查，则在离开时可以不用拍照。
+                </p>
+            </li>
+            <li>
+                <p>活动室使用者需保证活动室公共设施的完好。</p>
+            </li>
+        </ol>
+        <h2><a id="_13"></a>预约者信用制度</h2>
+        <ol>
+            <li>
+                <p>以下规则仅针对活动室<strong>预约者</strong>，预约者对其预约时段内的活动室使用负责。</p>
+            </li>
+            <li>
+                <p>活动室采用信用分级制度，共分为A、B、C、D、E、F六个等级。初始等级为A级，违反使用规则会有相应的降级措施。降到E级将失去活动室使用权一学期，降到F级将失去活动室使用权一年。</p>
+            </li>
+            <li>
+                <ol>
+                    <li>
+                        <p>若使用者违反<strong>活动室使用规则第5条</strong>，预约者的信用等级降一级，并在下一次活动室被使用前将活动室打扫干净。</p>
+                    </li>
+                    <li>
+                        <p>若使用者违反<strong>活动室使用规则第6条</strong>，且不主动上报的，预约者的信用等级降两级，并照价赔偿损失；若损坏公共设施但主动上报的，仅需照价赔偿损失。</p>
+                    </li>
+                    <li>
+                        <p>若使用者违反<strong>活动室使用规则第2/3/4条</strong>，预约者信用等级降一级。</p>
+                    </li>
+                </ol>
+            </li>
+            <li>
+                <p>其他违反规则的行为将视情节轻重给予惩罚措施。</p>
+            </li>
+        </ol>
+        <pre><code>
+注：
+1. 活动室使用者包括预约者，预约者对该次预约负全部责任；
+2. 本规则自10月10日起试用，试用期为一个月，一个月后将就试用中出现的问题对本规则进行修订；
+3. 本规则最终解释权归弘毅学堂社团中心所有。
+</code></pre>
+
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+</div>
+
+<!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="{{ url_for('static', filename='jquery/js/jquery-3.2.1.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='materializecss/js/materialize.min.js') }}"></script>
+<!-- Custom js files -->
+<script type="text/javascript" src="{{ url_for('static', filename='custom/js/main.js') }}"></script>
+<!-- string-format.js -->
+<script type="text/javascript" src="{{ url_for('static', filename='custom/js/string-format.js') }}"></script>
+
+{% block js_files %}{% endblock js_files %}
 </body>
 
 </html>

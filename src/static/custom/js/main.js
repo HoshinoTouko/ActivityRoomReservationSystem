@@ -35,7 +35,7 @@ function refresh_future_data(){
     $.post(
         '/api/get_future_reservation', [],
         function (result) {
-            let json = JSON.parse(result);
+            var json = JSON.parse(result);
             count = 0;
             json.forEach(function(item) {
                 var final_html = resolve_info(item);
@@ -54,7 +54,7 @@ function refresh_past_data(){
     $.post(
         '/api/get_past_reservation', [],
         function (result) {
-            let json = JSON.parse(result);
+            var json = JSON.parse(result);
             count = 0;
             json.forEach(function(item) {
                 var final_html = resolve_info(item);

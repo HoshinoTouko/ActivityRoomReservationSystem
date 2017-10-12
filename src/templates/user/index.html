@@ -1,0 +1,17 @@
+{% extends "base.html" %} {% block contents %}
+
+    <section id="change_password">
+    <div class="row">
+        <div class="input-field col s6">
+            <input placeholder="{{ old_pass }}" id="old_pass" type="text" class="validate">
+            <label for="old_pass">旧密码</label>
+        </div>
+        <div class="input-field col s6">
+            <input placeholder="{{ new_pass }}" id="new_pass" type="text" class="validate">
+            <label for="new_pass">旧密码</label>
+        </div>
+    </div>
+    </section>
+
+
+{% endblock contents %}

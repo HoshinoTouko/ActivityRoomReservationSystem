@@ -1,6 +1,6 @@
 '''A test model'''
 from src.model.Common import Common
-from src.model.User import User
+from src.model.SubmitForm import User
 from src.model.db import DB
 
 

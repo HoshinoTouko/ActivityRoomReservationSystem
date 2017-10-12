@@ -1,9 +1,9 @@
 '''Index view module'''
 
-from ..model import Common, User, Reservation
+from ..model import SubmitForm
+from ..model.Common import Common
+from ..model.Reservation import Reservation
 from flask import Blueprint, session, request
-Common = Common.Common
-Reservation = Reservation.Reservation
 
 API = Blueprint('api', __name__)
 
@@ -28,7 +28,7 @@ def add_reservation():
     data = request.form.to_dict()
     if request.method == 'POST':
         # New a User
-        user = User.User(data)
+        user = SubmitForm.SubmitForm(data)
         # Log data
         print('API view get POST data:')
         user.show()

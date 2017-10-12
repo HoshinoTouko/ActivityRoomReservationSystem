@@ -1,10 +1,10 @@
 '''Index view module'''
 
 from functools import wraps
-from ..model import Common, User, Reservation
+from ..model import SubmitForm
+from ..model.Common import Common
+from ..model.Reservation import Reservation
 from flask import Blueprint, session, request, render_template, redirect, url_for
-Common = Common.Common
-Reservation = Reservation.Reservation
 
 ADMIN = Blueprint('admin', __name__)
 

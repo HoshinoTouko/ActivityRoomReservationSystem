@@ -1,0 +1,32 @@
+{% extends "base.html" %} {% block contents %}
+
+<section id="login_form">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m6 offset-m3">
+                <h4>学生登陆</h4>
+                <div class="progress">
+                    <div class="determinate blue" style="width: 20%"></div>
+                </div>
+                {% if tip %}
+                    <p>注意！{{tip}}</p>
+                {% endif %}
+                <form id="user_login" class="row" method="post" action="">
+                    <div class="input-field col s12">
+                        <input name="username" id="username" type="text" class="validate">
+                        <label for="username">Name</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input name="password" id="password" type="password" class="validate">
+                        <label for="password">Password</label>
+                    </div>
+                    <p class="waves-effect waves-light btn" type="submit" onclick="user_login.submit();">
+                        确认
+                        <i class="material-icons right">send</i>
+                    </p> 
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock contents %}

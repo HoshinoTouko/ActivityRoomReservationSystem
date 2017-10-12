@@ -46,6 +46,8 @@ class Reservation:
         result = database.select('Reservation')
         for item in result:
             del item['telephone']
+            item['name'] = str(item['name'][0]) + "*" * (len(item['name'])-1)
+            item['stuid'] = str(item['stuid'][0:4]) + "*" * (len(item['stuid'])-4)
         return result
 
     # Admin func

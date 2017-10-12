@@ -4,7 +4,7 @@ from .Common import Common
 import os
 
 
-class User:
+class SubmitForm:
     '''This is a class for handling user data.'''
     def __init__(self, data):
         # Init database
@@ -95,7 +95,7 @@ class User:
         'endtime': '^\d{2}:\d{2}',
         'reservdate': '^\d{4}-\d{1,2}-\d{1,2}',
         'room': '^[\u4E00-\u9FA5A-Za-z0-9]+$',
-        'forwhat': '^[\u4E00-\u9FA5A-Za-z0-9]+$'
+        'forwhat': '^[\s\S]+$'
     }
     keyname_list = {
         'name': '名字',
