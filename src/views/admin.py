@@ -125,4 +125,5 @@ def logout():
     '''Log out func'''
     session.pop('username', None)
     session['isLogin'] = False
-    return redirect(url_for('admin.login'))
+    session['userIsLogin'] = False
+    return redirect(url_for('index.index'))

@@ -82,7 +82,12 @@ class DB:
         result = []
         # Get all column names in table
         column_names = self.get_column_names(table)
-        for item in cursor:
+        return DB.column_filter(column_names, cursor)
+
+    @staticmethod
+    def column_filter(column_names, results):
+        result = []
+        for item in results:
             temp_dict = {}
             for num, column_name in enumerate(column_names):
                 temp_dict[column_name] = item[num]

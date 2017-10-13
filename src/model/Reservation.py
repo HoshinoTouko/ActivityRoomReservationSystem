@@ -8,6 +8,19 @@ from .Common import Common
 
 class Reservation:
     '''A class about reservation handler.'''
+
+    @staticmethod
+    def get_reservation_by_stuid(stuid):
+        stuid = str(stuid)
+        db = Reservation.get_db()
+        results = DB.column_filter(
+            db.get_column_names('Reservation'),
+            db.run_sql('SELECT * FROM Reservation WHERE stuid="%s"' % stuid)
+        )
+        # print(results)
+        return results
+
+
     @staticmethod
     def change_status(reserv_id, status):
         '''Change the id of the reservation by id'''

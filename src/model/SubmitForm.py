@@ -1,6 +1,7 @@
 '''A model for user functions'''
 from .db import DB
 from .Common import Common
+from .User import User
 import os
 
 
@@ -55,7 +56,7 @@ class SubmitForm:
 
     def auth(self):
         '''Auth if the user has access'''
-        return self.info.get("password") == "2147483648"
+        return User.auth(self.info.get('stuid'), self.info.get('password'))
         # return True
 
     def check(self):

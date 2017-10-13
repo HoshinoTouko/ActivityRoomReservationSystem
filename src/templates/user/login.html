@@ -9,15 +9,15 @@
                     <div class="determinate blue" style="width: 20%"></div>
                 </div>
                 {% if tip %}
-                    <p>注意！{{tip}}</p>
+                    <p>{{tip}}</p>
                 {% endif %}
                 <form id="user_login" class="row" method="post" action="">
                     <div class="input-field col s12">
-                        <input name="username" id="username" type="text" class="validate">
-                        <label for="username">Name</label>
+                        <input value="{{ stuid }}" name="username" id="username" type="text" class="validate">
+                        <label for="username">StuID</label>
                     </div>
                     <div class="input-field col s12">
-                        <input name="password" id="password" type="password" class="validate">
+                        <input value="{{ password }}" name="password" id="password" type="password" class="validate">
                         <label for="password">Password</label>
                     </div>
                     <p class="waves-effect waves-light btn" type="submit" onclick="user_login.submit();">
