@@ -2,4 +2,4 @@
 from src import APP
 
 APP.secret_key = 'A0Zr98j/?adf)a&cNm%T'
-APP.run(debug=True, port=1235)
+APP.run(debug=False, port=1235)

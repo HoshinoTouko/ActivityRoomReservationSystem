@@ -1,5 +1,4 @@
-
-if(1){
+if(false){
     console.log('Test function running...');
     $("#name").val("TestName");
     $("#telephone").val('13012345678');
